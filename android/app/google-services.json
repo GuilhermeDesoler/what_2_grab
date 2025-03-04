@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "41501485294",
+    "project_id": "flutter-what-2-grab",
+    "storage_bucket": "flutter-what-2-grab.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41501485294:android:ab7f25a00493a83a83abff",
+        "android_client_info": {
+          "package_name": "com.example.what_2_grab"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1pklWYrfwj3Dtqk7oUe_bbgi_ssZSqHU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
