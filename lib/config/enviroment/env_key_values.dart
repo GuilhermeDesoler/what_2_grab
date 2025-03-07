@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:what_2_grab/config/env_loader.dart';
+import 'package:what_2_grab/config/enviroment/env_loader.dart';
 
 class EnvKeyValues {
   String get API_KEY_WEB => EnvLoader().get('API_KEY_WEB');
