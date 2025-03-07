@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:what_2_grab/core/utils/no_params.dart';
 
-import '../../domain/usecases/sign_in.dart';
-import '../../domain/usecases/sign_out.dart';
-import '../../domain/usecases/sign_up.dart';
+import '../../../domain/usecases/sign_in.dart';
+import '../../../domain/usecases/sign_out.dart';
+import '../../../domain/usecases/sign_up.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
 

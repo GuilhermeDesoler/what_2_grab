@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:what_2_grab/presentation/widgets/app_button.dart';
 
-import '../bloc/auth_bloc.dart';
-import '../bloc/auth_event.dart';
-import '../bloc/auth_state.dart';
+import '../bloc/auth/auth_bloc.dart';
+import '../bloc/auth/auth_event.dart';
+import '../bloc/auth/auth_state.dart';
+import '../widgets/custom_button.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -40,20 +42,40 @@ class LoginPage extends StatelessWidget {
                 obscureText: true,
               ),
               SizedBox(height: 16),
+              AppButton.primary(
+                text: 'teste',
+                onPress: () async => print('teste'),
+              ),
               BlocBuilder<AuthBloc, AuthState>(
                 builder: (context, state) {
-                  if (state is AuthLoading) {
-                    return CircularProgressIndicator();
-                  }
-                  return ElevatedButton(
-                    onPressed: () {
-                      final email = emailController.text;
-                      final password = passwordController.text;
-                      context
-                          .read<AuthBloc>()
-                          .add(SignInEvent(email, password));
-                    },
-                    child: Text('Login'),
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(context, '/signup');
+                        },
+                        child: Text('Registrar'),
+                      ),
+                      const SizedBox(width: 16),
+                      if (state is AuthLoading) ...[
+                        CircularProgressIndicator(),
+                      ] else ...[
+                        ElevatedButton(
+                          onPressed: () {
+                            final email = emailController.text;
+                            final password = passwordController.text;
+                            if (email.isEmpty || password.isEmpty) {
+                              return;
+                            }
+                            context
+                                .read<AuthBloc>()
+                                .add(SignInEvent(email, password));
+                          },
+                          child: Text('Entrar'),
+                        ),
+                      ],
+                    ],
                   );
                 },
               ),

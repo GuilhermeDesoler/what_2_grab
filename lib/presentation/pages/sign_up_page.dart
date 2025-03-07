@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/auth_bloc.dart';
-import '../bloc/auth_event.dart';
-import '../bloc/auth_state.dart';
+import '../bloc/auth/auth_bloc.dart';
+import '../bloc/auth/auth_event.dart';
+import '../bloc/auth/auth_state.dart';
 
 class SignUpPage extends StatelessWidget {
   SignUpPage({super.key});
@@ -42,18 +42,34 @@ class SignUpPage extends StatelessWidget {
               SizedBox(height: 16),
               BlocBuilder<AuthBloc, AuthState>(
                 builder: (context, state) {
-                  if (state is AuthLoading) {
-                    return CircularProgressIndicator();
-                  }
-                  return ElevatedButton(
-                    onPressed: () {
-                      final email = emailController.text;
-                      final password = passwordController.text;
-                      context
-                          .read<AuthBloc>()
-                          .add(SignUpEvent(email, password));
-                    },
-                    child: Text('Sign Up'),
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(context, '/login');
+                        },
+                        child: Text('Entrar'),
+                      ),
+                      const SizedBox(width: 16),
+                      if (state is AuthLoading) ...[
+                        CircularProgressIndicator(),
+                      ] else ...[
+                        ElevatedButton(
+                          onPressed: () {
+                            final email = emailController.text;
+                            final password = passwordController.text;
+                            if (email.isEmpty || password.isEmpty) {
+                              return;
+                            }
+                            context
+                                .read<AuthBloc>()
+                                .add(SignUpEvent(email, password));
+                          },
+                          child: Text('Confirmar'),
+                        ),
+                      ],
+                    ],
                   );
                 },
               ),

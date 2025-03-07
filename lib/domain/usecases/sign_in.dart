@@ -6,9 +6,7 @@ import 'package:what_2_grab/domain/entities/user.dart';
 import '../repositories/auth_respository.dart';
 
 class SignIn implements UseCase<User, SignInParams> {
-  SignIn({
-    required this.repository,
-  });
+  SignIn({required this.repository});
 
   final AuthRepository repository;
 
