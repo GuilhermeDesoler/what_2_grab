@@ -1,7 +1,7 @@
 import 'package:either_dart/either.dart';
 import 'package:what_2_grab/core/failures/auth_failure.dart';
 import 'package:what_2_grab/core/usecases/usecases.dart';
-import 'package:what_2_grab/features/auth/domain/entities/user.dart';
+import 'package:what_2_grab/domain/entities/user.dart';
 
 import '../repositories/auth_respository.dart';
 

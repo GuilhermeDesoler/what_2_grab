@@ -1,7 +1,7 @@
 import 'package:either_dart/either.dart';
 import 'package:what_2_grab/core/failures/auth_failure.dart';
 import 'package:what_2_grab/core/usecases/usecases.dart';
-import 'package:what_2_grab/features/auth/domain/repositories/auth_respository.dart';
+import 'package:what_2_grab/domain/repositories/auth_respository.dart';
 import '../entities/user.dart';
 
 class SignUp implements UseCase<User, SignUpParams> {

@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
-import 'package:what_2_grab/config/enviroment/env_key_values.dart';
+import 'package:what_2_grab/core/config/enviroment/env_key_values.dart';
 
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
@@ -67,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: _envValues.MESSAGING_SENDER_ID,
     projectId: _envValues.PROJECT_ID,
     storageBucket: _envValues.STORAGE_BUCKET,
+    iosClientId: _envValues.IOS_CLIENT_ID,
     iosBundleId: _envValues.IOS_BUNDLE_ID,
   );
 }

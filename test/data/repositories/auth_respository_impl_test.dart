@@ -2,12 +2,12 @@ import 'package:mocktail/mocktail.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:either_dart/either.dart';
-import 'package:what_2_grab/config/firebase/app_firebase.dart';
+import 'package:what_2_grab/core/config/firebase/app_firebase.dart';
 
 import 'package:what_2_grab/core/failures/auth_failure.dart';
 import 'package:what_2_grab/core/utils/no_params.dart';
-import 'package:what_2_grab/features/auth/data/repositories/auth_repository_impl.dart';
-import 'package:what_2_grab/features/auth/data/models/user_model.dart';
+import 'package:what_2_grab/data/repositories/auth_repository_impl.dart';
+import 'package:what_2_grab/data/models/user_model.dart';
 
 class MockAppFirebase extends Mock implements AppFirebase {}
 

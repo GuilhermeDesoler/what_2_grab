@@ -2,10 +2,10 @@ import 'package:either_dart/either.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:what_2_grab/core/failures/auth_failure.dart';
-import 'package:what_2_grab/features/auth/domain/entities/user.dart';
+import 'package:what_2_grab/domain/entities/user.dart';
 
-import 'package:what_2_grab/features/auth/domain/repositories/auth_respository.dart';
-import 'package:what_2_grab/features/auth/domain/usecases/sign_up.dart';
+import 'package:what_2_grab/domain/repositories/auth_respository.dart';
+import 'package:what_2_grab/domain/usecases/sign_up.dart';
 
 class MockAuthRepository extends Mock implements AuthRepository {}
 

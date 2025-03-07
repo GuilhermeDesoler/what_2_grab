@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Flutter Web (Chrome Web-Rendered PORT: 3000)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": [],
+      "toolArgs": [
+        "-d",
+        "chrome",
+        "--web-renderer",
+        "html",
+        "--web-port",
+        "3000"
+      ],
+      "flutterMode": "release"
+    }
+  ]
+}

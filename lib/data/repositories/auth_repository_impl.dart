@@ -1,5 +1,5 @@
 import 'package:either_dart/either.dart';
-import 'package:what_2_grab/config/firebase/app_firebase.dart';
+import 'package:what_2_grab/core/config/firebase/app_firebase.dart';
 
 import 'package:what_2_grab/core/failures/auth_failure.dart';
 import 'package:what_2_grab/core/utils/no_params.dart';

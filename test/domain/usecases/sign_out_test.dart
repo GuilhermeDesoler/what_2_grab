@@ -4,8 +4,8 @@ import 'package:mocktail/mocktail.dart';
 import 'package:what_2_grab/core/failures/auth_failure.dart';
 import 'package:what_2_grab/core/utils/no_params.dart';
 
-import 'package:what_2_grab/features/auth/domain/repositories/auth_respository.dart';
-import 'package:what_2_grab/features/auth/domain/usecases/sign_out.dart';
+import 'package:what_2_grab/domain/repositories/auth_respository.dart';
+import 'package:what_2_grab/domain/usecases/sign_out.dart';
 
 class MockAuthRepository extends Mock implements AuthRepository {}
 

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:what_2_grab/config/enviroment/env_loader.dart';
-import 'package:what_2_grab/config/firebase/app_firebase.dart';
-import 'package:what_2_grab/features/auth/domain/usecases/sign_out.dart';
+import 'package:what_2_grab/core/config/enviroment/env_loader.dart';
+import 'package:what_2_grab/core/config/firebase/app_firebase.dart';
+import 'package:what_2_grab/domain/usecases/sign_out.dart';
 
-import 'features/auth/data/repositories/auth_repository_impl.dart';
-import 'features/auth/domain/usecases/sign_in.dart';
-import 'features/auth/domain/usecases/sign_up.dart';
-import 'features/auth/presentation/bloc/auth_bloc.dart';
+import 'data/repositories/auth_repository_impl.dart';
+import 'domain/usecases/sign_in.dart';
+import 'domain/usecases/sign_up.dart';
+import 'presentation/bloc/auth_bloc.dart';
 import 'my_app.dart';
 
 void main() async {

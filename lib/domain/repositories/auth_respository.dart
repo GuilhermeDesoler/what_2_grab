@@ -1,7 +1,7 @@
 import 'package:either_dart/either.dart';
 
-import '../../../../core/failures/auth_failure.dart';
-import '../../../../core/utils/no_params.dart';
+import '../../core/failures/auth_failure.dart';
+import '../../core/utils/no_params.dart';
 import '../entities/user.dart';
 
 abstract class AuthRepository {

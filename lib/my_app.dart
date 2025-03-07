@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:what_2_grab/features/auth/presentation/pages/home_page.dart';
+import 'package:what_2_grab/presentation/pages/home_page.dart';
 
-import 'features/auth/presentation/pages/login_page.dart';
-import 'features/auth/presentation/pages/sign_up_page.dart';
+import 'presentation/pages/login_page.dart';
+import 'presentation/pages/sign_up_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

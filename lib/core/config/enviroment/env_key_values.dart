@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:what_2_grab/config/enviroment/env_loader.dart';
+import 'package:what_2_grab/core/config/enviroment/env_loader.dart';
 
 class EnvKeyValues {
   String get API_KEY_WEB => EnvLoader().get('API_KEY_WEB');
@@ -14,5 +14,6 @@ class EnvKeyValues {
   String get APP_ID_ANDROID => EnvLoader().get('APP_ID_ANDROID');
   String get API_KEY_IOS => EnvLoader().get('API_KEY_IOS');
   String get APP_ID_IOS => EnvLoader().get('APP_ID_IOS');
+  String get IOS_CLIENT_ID => EnvLoader().get('IOS_CLIENT_ID');
   String get IOS_BUNDLE_ID => EnvLoader().get('IOS_BUNDLE_ID');
 }
