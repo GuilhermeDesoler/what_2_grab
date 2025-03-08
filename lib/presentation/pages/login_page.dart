@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:what_2_grab/presentation/widgets/app_button.dart';
 
 import '../bloc/auth/auth_bloc.dart';
 import '../bloc/auth/auth_event.dart';
 import '../bloc/auth/auth_state.dart';
-import '../widgets/custom_button.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -16,7 +14,17 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Login')),
+      appBar: AppBar(
+        title: Text('Login'),
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, '/design');
+            },
+            child: Text('Design System'),
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: BlocListener<AuthBloc, AuthState>(
@@ -42,10 +50,6 @@ class LoginPage extends StatelessWidget {
                 obscureText: true,
               ),
               SizedBox(height: 16),
-              AppButton.primary(
-                text: 'teste',
-                onPress: () async => print('teste'),
-              ),
               BlocBuilder<AuthBloc, AuthState>(
                 builder: (context, state) {
                   return Row(

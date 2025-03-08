@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:what_2_grab/presentation/pages/design-system/design_system_page.dart';
 import 'package:what_2_grab/presentation/pages/home_page.dart';
 
 import 'core/config/service-locator/app_service_locator.dart';
@@ -24,9 +25,10 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/login',
         routes: {
-          '/login': (context) => LoginPage(),
-          '/signup': (context) => SignUpPage(),
-          '/home': (context) => HomePage(),
+          '/login': (_) => LoginPage(),
+          '/signup': (_) => SignUpPage(),
+          '/home': (_) => HomePage(),
+          '/design': (_) => DesignSystemPage(),
         },
       ),
     );

@@ -2,27 +2,37 @@ import 'package:flutter/material.dart';
 
 class CustomButton extends StatefulWidget {
   const CustomButton({
+    required this.width,
     required this.text,
     required this.textColor,
     required this.bgColor,
     this.shape = ButtonShape.semiRounded,
     this.size = ButtonSize.meddium,
+    this.prefix,
+    this.suffix,
     this.disabled = false,
+    this.loading = false,
     this.border = false,
     this.borderColor,
     this.onPress,
     super.key,
-  });
+  })  : assert(width > 0, 'Please provide a valid width!'),
+        assert(!disabled || onPress != null,
+            'onPress must be provided unless the button is disabled.');
 
+  final double width;
   final String text;
   final Color textColor;
   final Color bgColor;
   final ButtonShape shape;
   final ButtonSize size;
+  final IconData? prefix;
+  final IconData? suffix;
   final bool disabled;
+  final bool loading;
   final bool border;
   final Color? borderColor;
-  final Future<void> Function()? onPress;
+  final dynamic Function()? onPress;
 
   @override
   State<CustomButton> createState() => _CustomButtonState();
@@ -56,48 +66,47 @@ class _CustomButtonState extends State<CustomButton> {
     }
   }
 
-  bool get isDisabled => widget.disabled || widget.onPress == null || isLoading;
+  bool get isDisabled =>
+      widget.disabled || widget.onPress == null || isLoading || widget.loading;
 
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
       onEnter: (_) => setState(() => isHovered = true),
       onExit: (_) => setState(() => isHovered = false),
-      child: GestureDetector(
-        onTapDown: (_) => setState(() => isPressed = true),
-        onTapUp: (_) => setState(() => isPressed = false),
-        onTapCancel: () => setState(() => isPressed = false),
-        onTap: isDisabled ? null : _onAction,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(widget.shape.radius),
-          child: AnimatedContainer(
-            duration: Duration(milliseconds: 200),
-            curve: Curves.easeOut,
-            transform: Matrix4.translationValues(0, isPressed ? 2 : 0, 0),
-            padding: EdgeInsets.symmetric(
-              horizontal: widget.size.horizontalPadding,
-              vertical: widget.size.verticalPadding,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(widget.shape.radius),
-              border: widget.border
-                  ? Border.all(
-                      width: 1,
-                      color: isDisabled
-                          ? Colors.grey[500]!
-                          : (widget.borderColor ?? Colors.black),
-                    )
-                  : null,
-              color: _bgColor,
-              boxShadow: _shadow,
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(width: 8),
-                _buttonContent(),
-                const SizedBox(width: 8),
-              ],
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(widget.shape.radius),
+        child: Material(
+          elevation: 8,
+          child: GestureDetector(
+            onTapDown: (_) => setState(() => isPressed = true),
+            onTapUp: (_) => setState(() => isPressed = false),
+            onTapCancel: () => setState(() => isPressed = false),
+            onTap: isDisabled ? null : _onAction,
+            child: AnimatedContainer(
+              width: widget.width,
+              height: widget.size.height,
+              curve: Curves.easeOut,
+              duration: Duration(milliseconds: 200),
+              transform: Matrix4.translationValues(0, isPressed ? 2 : 0, 0),
+              padding: EdgeInsets.symmetric(
+                horizontal: widget.size.horizontalPadding,
+                vertical: widget.size.verticalPadding,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(widget.shape.radius),
+                border: widget.border
+                    ? Border.all(
+                        width: 1,
+                        color: isDisabled
+                            ? Colors.grey[500]!
+                            : (widget.borderColor ?? Colors.black),
+                      )
+                    : null,
+                color: _bgColor,
+                boxShadow: _shadow,
+              ),
+              child: _buttonContent(),
             ),
           ),
         ),
@@ -105,22 +114,50 @@ class _CustomButtonState extends State<CustomButton> {
     );
   }
 
+  Widget _iconContent(IconData icon) {
+    return Icon(
+      icon,
+      color: _textColor,
+      size: widget.size.fontSize,
+    );
+  }
+
   Widget _buttonContent() {
-    return isLoading
-        ? SizedBox(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        if (isLoading || widget.loading) ...[
+          SizedBox(
             width: widget.size.fontSize,
             height: widget.size.fontSize,
             child: CircularProgressIndicator(
               color: widget.textColor,
             ),
           )
-        : Text(
+        ] else ...[
+          if (widget.prefix != null) ...[
+            _iconContent(widget.prefix!),
+            const SizedBox(width: 8),
+          ],
+          Text(
             widget.text,
             style: TextStyle(
-              color: isDisabled ? Colors.grey[600] : widget.textColor,
+              color: _textColor,
               fontSize: widget.size.fontSize,
             ),
-          );
+          ),
+          if (widget.suffix != null) ...[
+            const SizedBox(width: 8),
+            _iconContent(widget.suffix!),
+          ],
+        ],
+      ],
+    );
+  }
+
+  Color get _textColor {
+    if (isDisabled) return Colors.grey[600]!;
+    return widget.textColor;
   }
 
   Color get _bgColor {
@@ -142,7 +179,7 @@ class _CustomButtonState extends State<CustomButton> {
 
 enum ButtonShape {
   rounded(50),
-  semiRounded(12),
+  semiRounded(10),
   squared(0);
 
   const ButtonShape(this.radius);
@@ -151,17 +188,19 @@ enum ButtonShape {
 }
 
 enum ButtonSize {
-  small(12, 12, 4),
-  meddium(14, 14, 6),
-  big(16, 16, 8);
+  small(12, 12, 4, 32),
+  meddium(14, 14, 6, 38),
+  big(16, 16, 8, 44);
 
   const ButtonSize(
     this.fontSize,
     this.horizontalPadding,
     this.verticalPadding,
+    this.height,
   );
 
   final double fontSize;
   final double horizontalPadding;
   final double verticalPadding;
+  final double height;
 }
